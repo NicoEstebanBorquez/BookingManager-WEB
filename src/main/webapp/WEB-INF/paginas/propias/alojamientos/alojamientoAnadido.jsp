@@ -15,7 +15,7 @@
             <!-- Barra de Navegación Alojamientos -->
         <jsp:include page="/WEB-INF/paginas/comunes/barraNavegacionAlojamientos.jsp"></jsp:include>
 
-       <h1>Alojamiento añadido correctamente</h1>
+       <h1>Alojamiento añadido correctamente.</h1>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     </body>
