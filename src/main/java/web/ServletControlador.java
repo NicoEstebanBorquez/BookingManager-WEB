@@ -82,7 +82,7 @@ public class ServletControlador extends HttpServlet {
 
     // CLIENTES --------------------------------------------------------------------
     private void irClientes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String jspClientes = "/WEB-INF/paginas/propias/clientes.jsp";
+        String jspClientes = "/WEB-INF/paginas/propias/clientes/clientes.jsp";
         request.getRequestDispatcher(jspClientes).forward(request, response);
     }
 
