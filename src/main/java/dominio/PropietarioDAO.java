@@ -15,6 +15,7 @@ public class PropietarioDAO {
     private static final String SQL_SELECT = "SELECT id_propietario, nombre, apellidos,dni, pasaporte, nacionalidad, telefono, domicilio, email, id_usuario FROM propietario";
     private static final String SQL_SELECT_ID = "SELECT id_propietario, nombre, apellidos, dni, pasaporte, nacionalidad, telefono, domicilio, email, id_usuario FROM propietario WHERE id_propietario=?";
     private static final String SQL_INSERT = "INSERT INTO propietario (nombre, apellidos, dni, pasaporte, nacionalidad, telefono, domicilio, email, id_usuario) VALUES (?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE propietario SET nombre=?, apellidos=?, dni=?, pasaporte=?, nacionalidad=?, telefono=?, domicilio=?, email=?, id_usuario=? WHERE id_propietario=?";
     private static final String SQL_DELETE = "DELETE FROM propietario WHERE id_propietario=?";
 
     public List listar() {
@@ -119,6 +120,36 @@ public class PropietarioDAO {
             Conexion.close(cn);
         }
         return elementosInsertados;
+    }
+    
+    public int actualizar(Propietario propietario) {
+        Connection cn = null;
+        PreparedStatement ps = null;
+        int elementosActualizados = 0;
+
+        try {
+            cn = Conexion.getConnection();
+            ps = cn.prepareStatement(SQL_UPDATE);
+            ps.setString(1, propietario.getNombre());
+            ps.setString(2, propietario.getApellidos());
+            ps.setString(3, propietario.getDni());
+            ps.setString(4, propietario.getPasaporte());
+            ps.setString(5, propietario.getNacionalidad());
+            ps.setString(6, propietario.getTelefono());
+            ps.setString(7, propietario.getDomicilio());
+            ps.setString(8, propietario.getEmail());
+            ps.setInt(9, propietario.getIdUsuario());
+            ps.setInt(10, propietario.getIdPropietario());
+            
+
+            elementosActualizados = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PropietarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            Conexion.close(ps);
+            Conexion.close(cn);
+        }
+        return elementosActualizados;
     }
 
     public int eliminar(int id) {

@@ -14,8 +14,9 @@ public class ClienteDAO {
 
     private static final String SQL_SELECT = "SELECT id_cliente, nombre, apellidos, dni, pasaporte, nacionalidad, telefono, email, id_usuario FROM cliente";
     private static final String SQL_SELECT_ID = "SELECT id_cliente, nombre, apellidos, dni, pasaporte, nacionalidad, telefono, email, id_usuario FROM cliente WHERE id_cliente=?";
-    /*private static final String SQL_INSERT = "INSERT INTO propietario (nombre, apellidos, dni, pasaporte, nacionalidad, telefono, domicilio, email, id_usuario) VALUES (?,?,?,?,?,?,?,?,?)";
-    private static final String SQL_DELETE = "DELETE FROM propietario WHERE id_propietario=?";*/
+    private static final String SQL_INSERT = "INSERT INTO cliente (nombre, apellidos, dni, pasaporte, nacionalidad, telefono, email, id_usuario) VALUES (?,?,?,?,?,?,?,?)";
+    private static final String SQL_UPDATE = "UPDATE cliente SET nombre=?, apellidos=?, dni=?, pasaporte=?, nacionalidad=?, telefono=?, email=?, id_usuario=? WHERE id_cliente=?";
+    private static final String SQL_DELETE = "DELETE FROM cliente WHERE id_cliente=?";
 
     public List listar() {
         Connection cn = null;
@@ -90,9 +91,8 @@ public class ClienteDAO {
         }
         return cliente;
     }
-    
-/*
-    public int insertar(Propietario propietario) {
+
+    public int insertar(Cliente cliente) {
         Connection cn = null;
         PreparedStatement ps = null;
         int elementosInsertados = 0;
@@ -100,19 +100,18 @@ public class ClienteDAO {
         try {
             cn = Conexion.getConnection();
             ps = cn.prepareStatement(SQL_INSERT);
-            ps.setString(1, propietario.getNombre());
-            ps.setString(2, propietario.getApellidos());
-            ps.setString(3, propietario.getDni());
-            ps.setString(4, propietario.getPasaporte());
-            ps.setString(5, propietario.getNacionalidad());
-            ps.setString(6, propietario.getTelefono());
-            ps.setString(7, propietario.getDomicilio());
-            ps.setString(8, propietario.getEmail());
-            ps.setInt(9, propietario.getIdUsuario());
+            ps.setString(1, cliente.getNombre());
+            ps.setString(2, cliente.getApellidos());
+            ps.setString(3, cliente.getDni());
+            ps.setString(4, cliente.getPasaporte());
+            ps.setString(5, cliente.getNacionalidad());
+            ps.setString(6, cliente.getTelefono());
+            ps.setString(7, cliente.getEmail());
+            ps.setInt(8, cliente.getIdUsuario());
 
             elementosInsertados = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(PropietarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             Conexion.close(ps);
             Conexion.close(cn);
@@ -120,6 +119,34 @@ public class ClienteDAO {
         return elementosInsertados;
     }
 
+    public int actualizar(Cliente cliente) {
+        Connection cn = null;
+        PreparedStatement ps = null;
+        int elementosActualizados = 0;
+
+        try {
+            cn = Conexion.getConnection();
+            ps = cn.prepareStatement(SQL_UPDATE);
+            ps.setString(1, cliente.getNombre());
+            ps.setString(2, cliente.getApellidos());
+            ps.setString(3, cliente.getDni());
+            ps.setString(4, cliente.getPasaporte());
+            ps.setString(5, cliente.getNacionalidad());
+            ps.setString(6, cliente.getTelefono());
+            ps.setString(7, cliente.getEmail());
+            ps.setInt(8, cliente.getIdUsuario());
+            ps.setInt(9, cliente.getIdCliente());
+
+            elementosActualizados = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            Conexion.close(ps);
+            Conexion.close(cn);
+        }
+        return elementosActualizados;
+    }
+    
     public int eliminar(int id) {
         Connection cn = null;
         PreparedStatement ps = null;
@@ -132,12 +159,12 @@ public class ClienteDAO {
 
             eliminado = ps.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(PropietarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             Conexion.close(ps);
             Conexion.close(cn);
         }
         return eliminado;
     }
-*/
+     
 }

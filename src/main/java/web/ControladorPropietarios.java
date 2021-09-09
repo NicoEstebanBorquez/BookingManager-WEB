@@ -131,12 +131,12 @@ public class ControladorPropietarios extends HttpServlet {
             case "InsertarPropietario":
                 this.insertarPropietario(request, response);
                 break;
-            /*    case "Guardar":
+            case "Guardar":
                 this.guardarCambios(request, response);
                 break;
             case "Cancelar":
-                this.irAlojamientos(request, response);
-                break;*/
+                this.irPropietarios(request, response);
+                break;
             default:
                 this.irPropietarios(request, response);
                 break;
@@ -168,5 +168,33 @@ public class ControladorPropietarios extends HttpServlet {
         String jspPropietarioAnadido = "/WEB-INF/paginas/propias/propietarios/propietarioAnadido.jsp";
         request.getRequestDispatcher(jspPropietarioAnadido).forward(request, response);
     }
+    
+    private void guardarCambios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        //Parámetros obtenidos desde el formulario
+        String nombre = request.getParameter("inputNombre");
+        String apellidos = request.getParameter("inputApellidos");
+        String dni = request.getParameter("inputDni");
+        String pasaporte = request.getParameter("inputPasaporte");
+        String nacionalidad = request.getParameter("inputNacionalidad");
+        String telefono = request.getParameter("inputTelefono");
+        String domicilio = request.getParameter("inputDomicilio");
+        String email = request.getParameter("inputEmail");
+        int idUsuario = Integer.parseInt(request.getParameter("inputUsuario"));
+
+        propietario = new Propietario(id, nombre, apellidos, dni, pasaporte, nacionalidad, telefono, domicilio, email, idUsuario);
+        int propietarioActualizado = propietarioDAO.actualizar(propietario);
+
+        if (propietarioActualizado == 0) {
+            System.out.println("########################### ERROR. EL PROPIETARIO NO SE HA ACTUALIZADO");
+        } else {
+            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@ PROPIETARIO ACTUALIZADO CORRECTAMENTE");
+        }
+
+        String jspPropietarioCambiosGuardados = "/WEB-INF/paginas/propias/propietarios/propietarioCambiosGuardados.jsp";
+        request.getRequestDispatcher(jspPropietarioCambiosGuardados).forward(request, response);
+    }
+
 
 }

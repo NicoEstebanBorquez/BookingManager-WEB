@@ -209,8 +209,8 @@ public class ControladorAlojamientos extends HttpServlet {
             System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ALOJAMIENTO ACTUALIZADO CORRECTAMENTE");
         }
 
-        String jspCambiosGuardadosBORRAR = "/WEB-INF/paginas/propias/alojamientos/jspCambiosGuardadosBORRAR.jsp";
-        request.getRequestDispatcher(jspCambiosGuardadosBORRAR).forward(request, response);
+        String jspAlojamientoCambiosGuardados = "/WEB-INF/paginas/propias/alojamientos/alojamientoCambiosGuardados.jsp";
+        request.getRequestDispatcher(jspAlojamientoCambiosGuardados).forward(request, response);
     }
 
     

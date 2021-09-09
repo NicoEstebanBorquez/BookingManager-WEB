@@ -73,6 +73,16 @@
                     <label class="form-label fw-bold" for="inputDomicilio">Domicilio:</label>
                     <input class="form-control" type="text" name="inputDomicilio" value="${propietarioSeleccionado.domicilio}">
                 </div>
+                
+                <!-- 5º FILA -->
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label" for="inputUsuario">Usuario</label>
+                        <select name="inputUsuario" class="form-control">
+                            <option value="${usuarioValidado.getIdUsuario()}">${usuarioValidado.getNombre()} ${usuarioValidado.getApellidos()} - ${usuarioValidado.getEmail()}</option> 
+                        </select>
+                    </div>
+                </div>
 
 
                 <!-- BOTONES -->

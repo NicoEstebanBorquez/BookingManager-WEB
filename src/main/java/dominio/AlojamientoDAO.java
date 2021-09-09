@@ -209,7 +209,6 @@ public class AlojamientoDAO {
             ps.setString(10, alojamiento.getProvincia());
             ps.setInt(11, alojamiento.getIdPropietario());
             ps.setInt(12, alojamiento.getIdUsuario());
-            ps.setInt(13, alojamiento.getIdAlojamiento());
 
             elementosActualizados = ps.executeUpdate();
         } catch (SQLException ex) {
