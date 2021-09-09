@@ -1,3 +1,4 @@
+<%@page import="dominio.Alojamiento"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="es">
@@ -51,17 +52,68 @@
 
                 <!-- 3º FILA -->
                 <div class="row">
+
                     <div class="col">
                         <label class="form-label fw-bold" for="inputTerraza">Terraza:</label>
-                        <input class="form-control" type="text" name="inputTerraza" value="${alojamientoSeleccionado.terraza}">
+                        <%
+                            Alojamiento alojamiento = (Alojamiento) request.getAttribute("alojamientoSeleccionado");
+                            String terraza = alojamiento.getTerraza();
+
+                            if (terraza.equals("SI")) {
+                                out.print("<select name='inputTerraza' class='form-control'>");
+                                out.print("<option value='SI' selected='selected'>SI</option>");
+                                out.print("<option value='NO'>NO</option>");
+                                out.print("</select>");
+                            }
+
+                            if (terraza.equals("NO")) {
+                                out.print("<select name='inputTerraza' class='form-control'>");
+                                out.print("<option value='SI'>SI</option>");
+                                out.print("<option value='NO' selected='selected'>NO</option>");
+                                out.print("</select>");
+                            }
+                        %>    
+                    <!--<input class="form-control" type="text" name="inputTerraza" value="${alojamientoSeleccionado.terraza}">-->
                     </div>
                     <div class="col">
                         <label class="form-label fw-bold" for="inputPiscina">Piscina:</label>
-                        <input class="form-control" type="text" name="inputPiscina" value="${alojamientoSeleccionado.piscina}">
+                        <%
+                            String piscina = alojamiento.getPiscina();
+
+                            if (piscina.equals("SI")) {
+                                out.print("<select name='inputPiscina' class='form-control'>");
+                                out.print("<option value='SI' selected='selected'>SI</option>");
+                                out.print("<option value='NO'>NO</option>");
+                                out.print("</select>");
+                            }
+
+                            if (piscina.equals("NO")) {
+                                out.print("<select name='inputPiscina' class='form-control'>");
+                                out.print("<option value='SI'>SI</option>");
+                                out.print("<option value='NO' selected='selected'>NO</option>");
+                                out.print("</select>");
+                            }
+                        %>
+                        <!--<input class="form-control" type="text" name="inputPiscina" value="${alojamientoSeleccionado.piscina}">-->
                     </div>
                     <div class="col">
                         <label class="form-label fw-bold" for="inputAparcamiento">Aparcamiento:</label>
-                        <input class="form-control" type="text" name="inputAparcamiento" value="${alojamientoSeleccionado.aparcamiento}">
+                        <%
+                            String aparcamiento = alojamiento.getAparcamiento();
+
+                            if (aparcamiento.equals("SI")) {
+                                out.print("<select name='inputAparcamiento' class='form-control'>");
+                                out.print("<option value='SI' selected='selected'>SI</option>");
+                                out.print("<option value='NO'>NO</option>");
+                                out.print("</select>");
+                            } else if (aparcamiento.equals("NO")) {
+                                out.print("<select name='inputAparcamiento' class='form-control'>");
+                                out.print("<option value='SI'>SI</option>");
+                                out.print("<option value='NO' selected='selected'>NO</option>");
+                                out.print("</select>");
+                            }
+                        %>
+                    <!--<input class="form-control" type="text" name="inputAparcamiento" value="${alojamientoSeleccionado.aparcamiento}">-->
                     </div>
                 </div>
 
@@ -84,7 +136,6 @@
                 </div>
 
                 <!-- 6º FILA -->
-
                 <div class="row"><div class="row">
                         <label class="form-label" for="inputPropietario">Propietario</label>
                         <select name="inputPropietario" class="form-control">

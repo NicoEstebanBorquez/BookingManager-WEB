@@ -108,7 +108,7 @@ public class ControladorAlojamientos extends HttpServlet {
 
         alojamiento = alojamientoDAO.encontrarPorId(id);
         request.setAttribute("alojamientoSeleccionado", alojamiento);
-        
+       
         //Obtiene lista de propietarios para añadirlos a la lista desplegable
         this.listadoPropietarios(request, response);
 
